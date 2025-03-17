@@ -1,3 +1,6 @@
+const express = require("express");
+const router = express.Router();
+
 const posts = [
   {
     title: "Ciambellone",
@@ -43,4 +46,27 @@ const posts = [
   },
 ];
 
-module.exports = posts;
+
+
+router.get("/", (req, res) => {
+  res.send("lista dei post");
+});
+
+router.get("/:slug", (req, res) => {
+  res.send(`dettaglio del post: ${req.params.slug}`);
+});
+
+router.post("/", (req, res) => {
+  res.send("Creazione di un nuovo post");
+});
+
+router.put("/:slug", (req, res) => {
+  res.send(`Aggiornamento del post: ${req.params.slug}`);
+});
+
+router.delete("/:slug", (req, res) => {
+  res.send(`Cancellazione del post: ${req.params.slug}`);
+});
+
+module.exports = router;
+
